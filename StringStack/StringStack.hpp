@@ -7,7 +7,7 @@
 class StringStack: private std::list<std::string>
 {
 public:
-  StringStack(); // automatically calls list<String> constructor
+  StringStack() {} // automatically calls list<String> constructor
 
   void push(const std::string &s);
   std::string pop();

@@ -23,7 +23,6 @@ AVLTree:: find(int valToFind) const
     return findHelper(_root, valToFind);
 }
 
-//ADDDED CODE HERE
 int getHeight(const AVLTreeNode *subTree)
 {
   if (!subTree)

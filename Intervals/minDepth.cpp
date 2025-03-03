@@ -8,6 +8,10 @@
 
 using namespace std;
 
+bool classLess(const Interval &i1, const Interval &i2)
+{
+  return i1.start() < i2.start(); 
+}
 
 #define MAX_CLASSROOMS 500
 int main(int argc, char *argv[])
@@ -27,8 +31,34 @@ int main(int argc, char *argv[])
       ifile >> lecture;
     }
 
+  classes.sort(classLess);
+
   for(Interval c:classes)
-    cout << c << endl;
-  
+    {
+      /*
+      // cout << c << endl;
+      c.display();
+      cout << endl;
+      */
+
+      // c is compatible with classrooms ...)
+      if (!classrooms.isEmpty() && classrooms.peekMin().finish() <= c.start() )
+	{
+	  //add c to schedule (depth does not increase)
+	  // 1. remove current classroom from heap
+	  classrooms.removeMin();
+
+	  // 2. update its available time
+
+	  
+	  // 3. put classroom back in heap
+	  classrooms.add(c.finish());
+	}
+      else
+	{
+	  //add one to number of classrooms ...
+	  //put c in the new classroom
+	}
+    }
   return 0;
 }

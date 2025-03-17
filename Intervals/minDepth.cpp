@@ -31,6 +31,9 @@ int main(int argc, char *argv[])
       ifile >> lecture;
     }
 
+  int d=0; // numOfClassrooms
+  
+  // sort by start times
   classes.sort(classLess);
 
   for(Interval c:classes)
@@ -40,6 +43,7 @@ int main(int argc, char *argv[])
       c.display();
       cout << endl;
       */
+
 
       // c is compatible with classrooms ...)
       if (!classrooms.isEmpty() && classrooms.peekMin().finish() <= c.start() )
@@ -57,8 +61,12 @@ int main(int argc, char *argv[])
       else
 	{
 	  //add one to number of classrooms ...
+	  d++;
 	  //put c in the new classroom
+	  classrooms.add(c.finish());
 	}
     }
+
+  cout << "needed " << d << " classrooms" << endl;
   return 0;
 }
